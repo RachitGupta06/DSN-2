@@ -1,10 +1,25 @@
-const notificationBtn = document.getElementById('enable');
+// Check if the browser supports the Notification API
+if (!("Notification" in window)) {
+  alert("This browser does not support desktop notification");
+}
 
-  // Do an initial check to see what the notification permission state is
-  if (Notification.permission === 'denied' || Notification.permission === 'default') {
-    notificationBtn.style.display = 'block';
-  } else {
-    notificationBtn.style.display = 'none';
-  }
+// Function to request notification permission
+function requestNotificationPermission() {
+  Notification.requestPermission().then(function (result) {
+    if (result === "granted") {
+      showNotification("Notification permission granted!");
+    } else {
+      showNotification("Notification permission denied.");
+    }
+  });
+}
 
-  note.appendChild(createListItem('App initialised.'));
+// Function to show a notification
+function showNotification(message) {
+  new Notification(message);
+}
+
+// Attach click event listener to the button
+document.getElementById("notifyButton").addEventListener("click", function() {
+  requestNotificationPermission();
+});
