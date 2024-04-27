@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Display saved data on the webpage
     if (savedDestination && savedArrival && pickUp && departureDate && time && id && availability && number) {
         document.getElementById('savedInfo').innerHTML = "Destination: " + savedDestination + "<br> Arrival: " + savedArrival + "<br> Pickup Point: " + pickUp
-        + "<br> Date: " + departureDate + "<br> Time: " + time + "<br> Car-Id: " + id + "<br> Seats Available: " + availability + "<br> Contact Number: " + number;
+        + "<br> Date: " + departureDate + "<br> Time: " + time + "<br> Car-Id: " + id + "<br> Seats Available: " + availability + "<br> contact Number: " + number;
     }
 });
 
@@ -40,7 +40,7 @@ document.getElementById('arrivalForm').addEventListener('submit', function(event
 
     // Display saved data on the webpage
     document.getElementById('savedInfo').innerHTML = "Destination: " + destination + "<br> Arrival: " + arrival + "<br> Pickup Point: " + pickup 
-    + "<br> Date: " + departuredate + "<br> Time: " + departuretime + "<br> Car-Id: " + carid + "<br> Seats Available: " + seats + "<br> Contact Number: " + contactnumber;
+    + "<br> Date: " + departuredate + "<br> Time: " + departuretime + "<br> Car-Id: " + carid + "<br> Seats Available: " + seats + "<br> contact Number: " + contactnumber;
 
     // Clear form inputs
     document.getElementById('destination').value = '';

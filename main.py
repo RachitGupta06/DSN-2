@@ -46,7 +46,7 @@ def signup():
         email = request.form.get('email').strip()
         password = request.form.get('password')
         
-        print(colored(f"{full_name, username, email, password}", "green"))
+        # print(colored(f"{full_name, username, email, password}", "green"))
 
         if add_user(
             full_name,
@@ -66,5 +66,23 @@ def logout():
     session.pop('is_loggedin', None)
     return redirect(url_for('login'))
 
+@app.route('/sharecar')
+def sharecar():
+    return render_template('formPage.html')
+
+@app.route('/rentcar')
+def rentcar():
+    return render_template('rent.html')
+
+@app.route('/bookride')
+def bookride():
+    return render_template('book.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contactUs.html')
+
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
