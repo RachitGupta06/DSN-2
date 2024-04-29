@@ -82,7 +82,33 @@ def bookride():
 def contact():
     return render_template('contactUs.html')
 
+from flask import Flask, request, render_template
 
+app = Flask(_name_)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/submit_form', methods=['POST'])
+def submit_form():
+    if request.method == 'POST':
+        car_name = request.form['carName']
+        contact_info = request.form['contactInfo']
+        max_passengers = request.form['maxPassengers']
+        seat_location = request.form['seatLocation']
+        location = request.form['location']
+        if location == 'Other':
+            location = request.form['otherLocation']
+        from_date = request.form['fromDate']
+        to_date = request.form['toDate']
+        
+        # Here you can process the form data (e.g., store it in a database, send an email, etc.)
+        
+        return 'Form submitted successfully!'
+
+if _name_ == '_main_':
+    app.run(debug=True)
 
 if __name__ == '__main__':
     app.run()
