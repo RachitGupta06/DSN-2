@@ -46,6 +46,8 @@ def signup():
         email = request.form.get('email').strip()
         password = request.form.get('password')
         
+        # print(colored(f"{full_name, username, email, password}", "green"))
+
         if add_user(
             full_name,
             username,
