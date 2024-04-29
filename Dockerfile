@@ -8,4 +8,4 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-CMD ["py", "main.py"]
+CMD ["gunicorn", "main:app"]
