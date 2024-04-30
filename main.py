@@ -1,6 +1,5 @@
 import random
 import string
-from termcolor import colored
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 
 from emailer import send_email
@@ -69,7 +68,7 @@ def signup():
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
     if request.method == 'POST':
-        print(colored(request.form, "green"))
+        print(request.form)
         
         destination_point = str(request.form['destination_point'])
         pickup_point = str(request.form['pickup_point'])
@@ -92,7 +91,7 @@ def submit_form():
             return render_template("success.html")
         
         except Exception as e:
-            print(colored(e, "red"))
+            print(e)
             return jsonify({"output": "Failed to send email"})
         
 
