@@ -1,21 +1,30 @@
-from mongo_functions import *
+import random
+import string
+from termcolor import colored
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+
+from emailer import send_email
+from mongo_functions import *
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '825'
 
+def random_car_number_generator():
+    states = ['AP','AR','AS','BR','CG','DL','GA','GJ','HR','HP','JK','JH','KA','KL','LD','MP','MH','MN','ML','MZ','NL','PY','PB','RJ','SK','TN','TS','TR','UP','WB','AN','CH','DN','DD', 'LA']
+    return random.choice(states)+str(random.randint(10,99))+random.choice(string.ascii_uppercase)+random.choice(string.ascii_uppercase)+str(random.randint(1000,9999))
+
 @app.route('/')
 def index():
     if 'username' in session:
-        is_loggedin = session.pop('is_loggedin', False)
+        is_loggedin = session.pop('is_loggedin', False) 
 
         if is_loggedin:
             return render_template('index.html', is_loggedin=True, button_text="Logout")
 
         else:
             return render_template('index.html', is_loggedin=False, button_text="Login | Sign In")
-
+        
     return render_template('index.html', is_loggedin=False, button_text="Login | Sign In")
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -24,7 +33,7 @@ def login():
         session['is_loggedin'] = False
 
     if request.method == 'POST':
-        username = request.form.get('username') 
+        username = request.form.get('username')
         password = request.form.get('password')
         
         if authenticate_team(username, password):
@@ -60,17 +69,32 @@ def signup():
 @app.route('/submit_form', methods=['POST'])
 def submit_form():
     if request.method == 'POST':
-        car_name = request.form['carName']
-        contact_info = request.form['contactInfo']
-        max_passengers = request.form['maxPassengers']
-        seat_location = request.form['seatLocation']
-        location = request.form['location']
-        if location == 'Other':
-            location = request.form['otherLocation']
-        from_date = request.form['fromDate']
-        to_date = request.form['toDate']
+        print(colored(request.form, "green"))
         
-        return 'Form submitted successfully!'
+        destination_point = str(request.form['destination_point'])
+        pickup_point = str(request.form['pickup_point'])
+        departure_date = str(request.form['departure_date'])
+        departuretime = str(request.form['departure_time'])
+        no_of_passengers = str(request.form['no_of_passengers'])
+        emailId = str(request.form['email_id'])
+
+        try:
+            _ = send_email(
+                emailId,
+                "Mr. Ramesh Kumar",
+                departure_date,
+                departuretime,
+                random_car_number_generator(),
+                pickup_point,
+                destination_point,
+                no_of_passengers
+            )
+            return render_template("success.html")
+        
+        except Exception as e:
+            print(colored(e, "red"))
+            return jsonify({"output": "Failed to send email"})
+        
 
 @app.route('/logout')
 def logout():
@@ -94,6 +118,5 @@ def bookride():
 def contact():
     return render_template('contactUs.html')
 
-
 if __name__ == '_main_':
-    app.run()
+    app.run(debug=True)

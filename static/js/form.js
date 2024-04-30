@@ -3,15 +3,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var savedDestination = localStorage.getItem('destination');
     var savedArrival = localStorage.getItem('arrival');
     var pickUp = localStorage.getItem('pickup');
-    var departureDate = localStorage.getItem('departuredate');
+    var departuredate = localStorage.getItem('departuredate');
     var time = localStorage.getItem('departuretime');
     var id = localStorage.getItem('carid');
     var availability = localStorage.getItem('seats');
     var number = localStorage.getItem('contactnumber');
     // Display saved data on the webpage
-    if (savedDestination && savedArrival && pickUp && departureDate && time && id && availability && number) {
+    if (savedDestination && savedArrival && pickUp && departuredate && time && id && availability && number) {
         document.getElementById('savedInfo').innerHTML = "Destination: " + savedDestination + "<br> Arrival: " + savedArrival + "<br> Pickup Point: " + pickUp
-        + "<br> Date: " + departureDate + "<br> Time: " + time + "<br> Car-Id: " + id + "<br> Seats Available: " + availability + "<br> contact Number: " + number;
+        + "<br> Date: " + departuredate + "<br> Time: " + time + "<br> Car-Id: " + id + "<br> Seats Available: " + availability + "<br> contact Number: " + number;
     }
 });
 
