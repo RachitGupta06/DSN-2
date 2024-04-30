@@ -102,17 +102,17 @@ def logout():
     session.pop('is_loggedin', None)
     return redirect(url_for('login'))
 
-@app.route('/sharecar')
-def sharecar():
+@app.route('/bookride')
+def bookride():
     return render_template('formPage.html')
 
 @app.route('/rentcar')
 def rentcar():
     return render_template('rent.html')
 
-@app.route('/bookride')
-def bookride():
-    return render_template('book.html')
+# @app.route('/bookride')
+# def bookride():
+#     return render_template('book.html')
 
 @app.route('/contact')
 def contact():
