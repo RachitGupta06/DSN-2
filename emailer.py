@@ -58,6 +58,3 @@ The Carpool Team
     text = msg.as_string()
     server.sendmail(SENDER_EMAIL, receiver_email, text)
     server.quit()
-
-if __name__ == '__main__':
-    send_email("arpitsengar99@gmail.com", "Nirmalanand", "Nirmalanand", "10:00", "KA 01 1234", "Koramangala", "Whitefield", 3)
