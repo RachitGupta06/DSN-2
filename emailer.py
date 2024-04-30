@@ -2,11 +2,9 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-import datetime
 
-from dotenv import main
-
-main.load_dotenv()
+# from dotenv import main
+# main.load_dotenv()
 
 SENDER_EMAIL = os.getenv('CARPOOL_EMAIL')
 MAIL_PASS = os.getenv('CARPOOL_PASSWORD')
