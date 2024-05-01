@@ -83,7 +83,7 @@ def submit_form():
                 "Mr. Ramesh Kumar",
                 departure_date,
                 departuretime,
-                random_car_number_generator(),
+                str(random_car_number_generator()),
                 pickup_point,
                 destination_point,
                 no_of_passengers
@@ -91,7 +91,6 @@ def submit_form():
             return render_template("success.html")
         
         except Exception as e:
-            print(e)
             return jsonify({"output": str(e)})
 
 @app.route('/logout')
