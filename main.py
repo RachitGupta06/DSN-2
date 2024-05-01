@@ -117,5 +117,9 @@ def rentcar():
 def contact():
     return render_template('contactUs.html')
 
+@app.route('/rent2')
+def rent2():
+    return render_template('rent2.html')
+
 if __name__ == '_main_':
     app.run(debug=True)
