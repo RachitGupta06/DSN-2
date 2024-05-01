@@ -70,12 +70,12 @@ def submit_form():
     if request.method == 'POST':
         print(request.form)
         
-        destination_point = str(request.form['destination_point'])
-        pickup_point = str(request.form['pickup_point'])
-        departure_date = str(request.form['departure_date'])
-        departuretime = str(request.form['departure_time'])
-        no_of_passengers = str(request.form['no_of_passengers'])
-        emailId = str(request.form['email_id'])
+        destination_point = str(request.form['destination_point']).encode('ascii', 'ignore').decode()
+        pickup_point = str(request.form['pickup_point']).encode('ascii', 'ignore').decode()
+        departure_date = str(request.form['departure_date']).encode('ascii', 'ignore').decode()
+        departuretime = str(request.form['departure_time']).encode('ascii', 'ignore').decode()
+        no_of_passengers = str(request.form['no_of_passengers']).encode('ascii', 'ignore').decode()
+        emailId = str(request.form['email_id']).encode('ascii', 'ignore').decode()
 
         try:
             _ = send_email(
