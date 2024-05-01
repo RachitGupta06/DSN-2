@@ -92,10 +92,10 @@ def submit_form():
         
         except Exception as e:
             print(e)
-            return jsonify({"output": "Failed to send email"})
-        
+            return jsonify({"output": str(e)})
 
 @app.route('/logout')
+
 def logout():
     session.pop('username', None)
     session.pop('is_loggedin', None)
